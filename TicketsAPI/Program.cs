@@ -82,8 +82,17 @@ app.MapGet("/tickets", async (TicketsDbContext dbContext) =>
         return Results.Ok(tickets);
     })
     .WithName("GetAllTickets")
-    .WithTags("Tickets")
+    .WithTags("Get all tickets")
     .WithOpenApi();
+
+app.MapGet("/tickets/{id:int}", async (int id, TicketsDbContext dbContext) =>
+    await dbContext.Tickets.FindAsync(id)
+        is Ticket ticket
+            ? Results.Ok(ticket)
+            : Results.NotFound())
+            .WithName("GetTicketById")
+            .WithTags("Get ticket by Id");
+
 
 app.MapGet("/tickets/provider/{id:int}", async (int id, TicketsDbContext dbContext) =>
     {
@@ -117,7 +126,16 @@ app.MapGet("/tickets/provider/{id:int}", async (int id, TicketsDbContext dbConte
         return Results.Ok(providers);
     })
     .WithName("GetTicketsByProviderId")
-    .WithTags("Providers");
+    .WithTags("Get tickets by provider Id");
+
+
+app.MapGet("/providers", async (TicketsDbContext dbContext) =>
+{
+    var providers = await dbContext.Providers.ToListAsync();
+    return providers.Any() ? Results.Ok(providers) : Results.NotFound();
+})
+.WithName("GetAllProviders")
+.WithTags("Get all providers");
 
 app.MapGet("/provider/{id:int}", async (int id, TicketsDbContext dbContext) =>
     await dbContext.Providers.FindAsync(id)
