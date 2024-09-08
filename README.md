@@ -65,7 +65,7 @@ The Tickets Management System consists of two main services:
     ```bash
    dotnet run
    ```
-The API will start and should be accessible at https://localhost:5001
+The API will start and should be accessible at http://localhost:5001
 
 ### Running the Web App
 
@@ -77,7 +77,7 @@ The API will start and should be accessible at https://localhost:5001
     ```bash
    dotnet run
    ```
-The web app will start and should be accessible at https://localhost:5002
+The web app will start and should be accessible at http://localhost:5002
 
 ## API Endpoints
 The API provides the following endpoints for managing tickets and providers:
@@ -122,4 +122,4 @@ Contributions are welcome! Please follow these steps to contribute:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Blog
-Link to related blog post: TO BE UPDATED
+Link to related blog post: [Cloud codeblock](https://cloudcodeblock.com/2024/09/08/asp-net-core-web-app-that-consumes-an-api/)
