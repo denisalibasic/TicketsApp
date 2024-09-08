@@ -1,0 +1,39 @@
+﻿@page
+@model TicketsWebApp.Pages.TicketsModel
+@using TicketsWebApp.Models
+@{
+    ViewData["Title"] = "Tickets";
+}
+
+<h1>Tickets</h1>
+
+<a class="btn btn-primary mb-3" asp-page="CreateTicket">Create New Ticket</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Provider</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model.Tickets)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                <td>@ticket.TicketName</td>
+                <td>@ticket.TicketQuantity</td>
+                <td>@ticket.ProviderName</td>
+                <td>
+                    <a class="btn btn-sm btn-secondary" asp-page="EditTicket" asp-route-id="@ticket.TicketId">Edit</a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@ticket.TicketId" style="display:inline-block;" onsubmit="return confirm('Are you sure you want to delete this ticket?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

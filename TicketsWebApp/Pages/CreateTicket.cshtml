@@ -1,0 +1,29 @@
+﻿@page
+@model TicketsWebApp.Pages.CreateTicketModel
+@{
+    ViewData["Title"] = "Create Ticket";
+}
+
+<h1>Create New Ticket</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="TicketRequest.TicketName" class="control-label"></label>
+        <input asp-for="TicketRequest.TicketName" class="form-control" />
+        <span asp-validation-for="TicketRequest.TicketName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TicketRequest.TicketQuantity" class="control-label"></label>
+        <input asp-for="TicketRequest.TicketQuantity" class="form-control" />
+        <span asp-validation-for="TicketRequest.TicketQuantity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="TicketRequest.ProviderName" class="control-label">Provider</label>
+        <select asp-for="TicketRequest.ProviderName" class="form-control" asp-items="@(new SelectList(Model.Providers, "Name", "Name"))">
+            <option value="">-- Select Provider --</option>
+        </select>
+        <span asp-validation-for="TicketRequest.ProviderName" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Tickets" class="btn btn-secondary">Cancel</a>
+</form>

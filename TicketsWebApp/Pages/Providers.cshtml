@@ -1,0 +1,30 @@
+﻿@page
+@model TicketsWebApp.Pages.ProvidersModel
+@using TicketsWebApp.Models
+@{
+    ViewData["Title"] = "Providers";
+}
+
+<h1>Providers</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var provider in Model.Providers)
+        {
+            <tr>
+                <td>@provider.Id</td>
+                <td>@provider.Name</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-page="ProviderDetails" asp-route-id="@provider.Id">View Tickets</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

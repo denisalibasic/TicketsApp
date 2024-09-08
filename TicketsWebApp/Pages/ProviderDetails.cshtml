@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model TicketsWebApp.Pages.ProviderDetailsModel
+@using TicketsWebApp.Models
+@{
+    ViewData["Title"] = "Provider Details";
+}
+
+<h1>Provider: @Model.Provider.Name</h1>
+
+@if (Model.Tickets != null && Model.Tickets.Any())
+{
+    <h2>Tickets</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Ticket Name</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ticket in Model.Tickets)
+            {
+                <tr>
+                    <td>@ticket.Id</td>
+                    <td>@ticket.Name</td>
+                    <td>@ticket.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No tickets available for this provider.</p>
+}
